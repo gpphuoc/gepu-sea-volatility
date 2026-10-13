@@ -122,12 +122,14 @@ phi chuẩn (phân phối), đặc trưng của thị trường mới nổi. Lju
 ARCH(10) có ý nghĩa ở mức 1% cho mọi chuỗi, xác nhận hiện tượng volatility clustering và hiệu ứng ARCH là cơ sở để dùng lớp mô hình (G)ARCH. Thống kê
 KPSS nhỏ và không có ý nghĩa → mọi chuỗi lợi suất đều dừng. GEPU (theo tháng, n = 216)
 lệch phải (0,82), gần mesokurtic, dai dẳng và dừng.
+[Thống kê mô tả](result/tables/descriptive_stats.csv) 
 
 ### 2. Tương quan chéo thị trường
 Toàn bộ tương quan Pearson theo cặp đều dương và có ý nghĩa ở mức 1%. Indonesia,
 Malaysia, Philippines và Thái Lan tạo thành một cụm (0,34–0,41), trong khi Việt Nam
 tương quan thấp nhất với mọi thị trường (0,19–0,26) cho thấy mức độ phân mảnh tương
 đối cao, nhất quán với độ mở tài khoản vốn thấp hơn của Việt Nam.
+[Ma trận tương quan](result/tables/correlation.csv)
 
 ### 3. Wavelet Coherence (H1, H2)
 Độ gắn kết (coherence) giữa GEPU và lợi suất từng thị trường tập trung ở dải tần số
@@ -140,6 +142,12 @@ ngắn hạn mang tính gián đoạn hơn là dai dẳng (H2).
 **Lưu ý:** *Các dải ở tần số thấp nhất nằm
 ngoài vùng ảnh hưởng tin cậy Cone of Influence (COI - đường viền nón màu trắng trên ảnh kết quả) nên không diễn giải.*
 
+![Wavelet Coherence: GEPU và Indonesia](result/GEPU%20-%20INA.png)
+![Wavelet Coherence: GEPU và Malaysia](result/GEPU%20-%20MAS.png)
+![Wavelet Coherence: GEPU và Philippines](result/GEPU%20-%20PHI.png)
+![Wavelet Coherence: GEPU và Thái Lan](result/GEPU%20-%20THA.png)
+![Wavelet Coherence: GEPU và Việt Nam](result/GEPU%20-%20VIE.png)
+
 ### 4. Ước lượng GARCH-MIDAS
 Động học ngắn hạn mạnh và nhất quán ở cả hai ước lượng: α (ARCH) 0,04–0,06 và β (GARCH)
 0,87–0,96, đều có ý nghĩa 1%, với α+β < 1 (phương sai có điều kiện dừng, độ dai dẳng
@@ -147,11 +155,15 @@ cao). Tuy nhiên, hệ số tải dài hạn θ (MIDAS) chỉ có ý nghĩa ở 
 với RV là Indonesia (+) và Philippines (−); với GEPU chủ yếu là Việt Nam cho thấy cả
 realized volatility lẫn GEPU đều không có tác động dài hạn in-sample bền vững lên biến
 động ở phần lớn thị trường trong mẫu này.
+[GARCH-MIDAS-RV](result/tables/garch_midas_rv.csv)
+[GARCH-MIDAS-GEPU](result/tables/garch_midas_gepu.csv)
+
 ### 5. So sánh dự báo - Kiểm định Diebold-Mariano (H3)
 Kiểm định DM so sánh độ chính xác dự báo ngoài mẫu (180 ngày) của mô hình
 GARCH-MIDAS-GEPU với mô hình chuẩn GARCH-MIDAS-RV, tính trên sai số dự báo phương sai
 (squared-return). Quy ước: thống kê **âm** ủng hộ GEPU, **dương** ủng hộ RV.
 
+[kiểm định DM](result/tables/dm_test.csv)
 | Thị trường | h = 10 | h = 30 | h = 60 | h = 180 |
 |---|---|---|---|---|
 | INA | +13,42*** | +3,91*** | −0,03 | −0,28 |
@@ -180,18 +192,22 @@ năng dự báo biến động vượt trội so với realized volatility** ở
 ```
 .
 |-- Data.xlsx
-|
-|-- R_studio
-|   |-- descriptive_correl.R
-|   |-- Wavelet.R
-|   |-- garch_midas.R
-|
-|-- result
-|   |-- descriptive_statistics_table
-|   |-- correaltion_table
-|   |-- wavelet_coherence_image
-|   |-- GARCH-MIDAS-RV_table
-|   |-- DMtest_table
+|-- R
+    |-- descriptive_correl.R
+    |-- Wavelet.R
+    |-- garch_midas.R
+`-- result
+    |-- GEPU - INA.png
+    |-- GEPU - MAS.png
+    |-- GEPU - PHI.png
+    |-- GEPU - THA.png
+    |-- GEPU - VIE.png
+    `-- table
+        |-- descriptive_stats.csv
+        |-- correlation.csv
+        |-- garch_midas_rv.csv
+        |-- garch_midas_gepu.csv
+        |-- dm_test.csv
 
 ```
 
